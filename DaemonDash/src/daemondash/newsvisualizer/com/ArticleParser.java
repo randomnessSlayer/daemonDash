@@ -5,7 +5,7 @@ import java.util.Collections;
 
 public class ArticleParser {
 	public static final int NUM_POP_WORDS = 15;
-	private static final String[] commonWords = new String[] { "A", "AN", "IT", "IF", "THE", "WHILE", "IN", "FROM",
+	private static final String[] commonWords = new String[] { "A", "AN", "AT", "FOR", "IT", "IF", "THE", "WHILE", "IN", "FROM",
 			"AND", "WAS", "WHERE", "WHAT", "WHEN", "WHERE", "WHY", "HOW", "THAT", "THEN", "THERE", "WHO", "OF", "ALL", "WERE", "INTO", "BY", "HAD", "TO" };
 	private ArrayList<ArrayList<Tuple<String>>> listOfWordCountsByArticle = new ArrayList<ArrayList<Tuple<String>>>();
 	private ArrayList<Tuple<String>> listOfWordCountsTotal = new ArrayList<Tuple<String>>();
