@@ -37,5 +37,6 @@ public class RSSFeed {
 	
 //	public static void main (String [] args) throws IOException, URISyntaxException{		
 //		RSSFeed test = new RSSFeed (new URL("http://rss.cnn.com/rss/cnn_topstories.rss"));
+//	
 //	}
 }
