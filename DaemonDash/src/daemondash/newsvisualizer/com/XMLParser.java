@@ -1,79 +1,49 @@
 package daemondash.newsvisualizer.com;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
-import org.w3c.dom.Element;
+import org.jsoup.*;
+import org.jsoup.nodes.*;
+import org.jsoup.parser.*;
+import org.jsoup.select.*;
+
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class XMLParser {
 
 	private ArrayList<String> links;
 
-	public XMLParser(Document xmlFile){
-
+	public XMLParser(String feed) throws IOException {
 		links = new ArrayList<String>();
-		NodeList nList = createNodeList(xmlFile);
 		
-		for(int counter = 0; counter < nList.getLength(); counter++){
-
-			Node n = nList.item(counter);
-
-			if(n.getNodeType() == n.ELEMENT_NODE){
-				Element e = (Element) n;
-				String link = e.getElementsByTagName("link").item(0).getTextContent();
-				links.add(link);
-			}
+		Document doc = Jsoup.connect(feed).get();
+		doc = Jsoup.parse(doc.html(), "", Parser.xmlParser());
+		Elements elements = doc.getElementsByTag("item");
+		
+		for (Element element : elements) {
+			links.add(element.getElementsByTag("link").first().text());
 		}
-
-
 	}
 
-	public XMLParser(Document xmlFile, String searchTerm){
-		
+	public XMLParser(String feed, String searchTerm) throws IOException{
 		links = new ArrayList<String>();
-		NodeList nList = createNodeList(xmlFile);
-		searchTerm = searchTerm.toLowerCase();
 		
-		for(int counter = 0; counter < nList.getLength(); counter++){
+		Document doc = Jsoup.connect(feed).get();
+		doc = Jsoup.parse(doc.html(), "", Parser.xmlParser());
+		Elements elements = doc.getElementsByTag("item");
+		
+		for (Element element : elements) {
+			String title = element.getElementsByTag("title").first().text();
+			String description = element.getElementsByTag("description").first().text();
 			
-			Node n = nList.item(counter);
-
-			if(n.getNodeType() == n.ELEMENT_NODE){
-				Element e = (Element) n;
-				String title = e.getElementsByTagName("title").item(0).getTextContent()
-						.toLowerCase();
-				String description = e.getElementsByTagName("description").item(0)
-						.getTextContent().toLowerCase();
-				if(title.contains(searchTerm) || description.contains(searchTerm)){
-					links.add(e.getElementsByTagName("link").item(0).getTextContent());
-				}
+			if (title.contains(searchTerm) || description.contains(searchTerm)) {
+				links.add(element.getElementsByTag("link").first().text());
 			}
 		}
 	}
 
 	public ArrayList<String> retrieveLinks(){
 		return links;
-	}
-
-	private NodeList createNodeList(Document xmlFile){
-		try{
-			//create a document out of the xml file to parse the element
-
-			xmlFile.getDocumentElement().normalize();
-
-			//creates a list of nodes separated by "item" tags
-
-			NodeList nList = xmlFile.getElementsByTagName("item");
-			
-			return nList;
-			
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-			throw new IllegalArgumentException();
-		}
 	}
 }
