@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class XMLParser {
 	
-	ArrayList<String> links;
+	private ArrayList<String> links;
 	
-	public void XMLParser(File xmlFile){
+	public XMLParser(File xmlFile){
 		
 		links = new ArrayList<String>();
 		
@@ -36,7 +36,7 @@ public class XMLParser {
 				
 				if(n.getNodeType() == n.ELEMENT_NODE){
 					Element e = (Element) n;
-					String link = e.getAttribute("link");
+					String link = e.getElementsByTagName("link").item(0).getTextContent();
 					links.add(link);
 				}
 				
@@ -44,10 +44,14 @@ public class XMLParser {
 			}
 			
 		}catch(Exception e){
-			throw new IllegalArgumentException();
+			System.out.println(e.getMessage());
 		}
 	}
-
+	
+	public XMLParser(File xmlFile, String searchTerm){
+		
+	}
+	
 	public ArrayList<String> retrieveLinks(){
 
 		return links;
