@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-import javax.xml.transform.sax.SAXTransformerFactory;
-
 public class ArticleParser {
 	public static final int NUM_POP_WORDS = 15;
 	private ArrayList<ArrayList<Tuple<String>>> listOfWordCountsByArticle = new ArrayList<ArrayList<Tuple<String>>>();
