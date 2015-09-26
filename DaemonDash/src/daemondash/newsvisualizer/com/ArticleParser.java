@@ -7,7 +7,7 @@ public class ArticleParser {
 	public static final int NUM_POP_WORDS = 15;
 	private static final String[] commonWords = new String[] { "FOR", "THE", "SAID", "WHILE", "FROM", "AND", "WAS",
 			"WHERE", "WHAT", "WHEN", "WHERE", "WHY", "HOW", "THAT", "THEN", "THERE", "WHO", "ALL", "WERE", "INTO",
-			"HAD" };
+			"HAD", "WILL", "WITH" };
 	private ArrayList<ArrayList<Tuple<String>>> listOfWordCountsByArticle = new ArrayList<ArrayList<Tuple<String>>>();
 	private ArrayList<Tuple<String>> listOfWordCountsTotal = new ArrayList<Tuple<String>>();
 	private ArrayList<String> mostPopWords = new ArrayList<String>();
@@ -61,7 +61,7 @@ public class ArticleParser {
 					return false;
 				}
 			}
-		}else{
+		} else {
 			return false;
 		}
 		return true;
