@@ -1,4 +1,4 @@
-package daemondash.newsvisualizer.com;
+package com.daemondash.newsvisualizer.background;
 import java.io.*;
 import java.util.*;
 import org.jsoup.*;
@@ -17,7 +17,7 @@ public class WebReader {
 			Elements paragraphs = doc.getElementsByTag("p");
 			Elements goodParagraphs = new Elements();
 			for (Element paragraph : paragraphs) {
-				if (URL.contains("http://rss.cnn.com") && paragraph.hasClass("zn-body__paragraph")) {
+				if (!paragraph.hasClass("metadata")) {
 					goodParagraphs.add(paragraph);
 				}
 			}
@@ -27,6 +27,7 @@ public class WebReader {
 					String text = " " + goodParagraph.text();
 					//Removes all punctuation except apostrophes
 					text = text.replaceAll("[\\p{Punct}&&[^\\u0027]]", " ");
+					text = text.toUpperCase(Locale.ENGLISH);
 					output += text;
 			}
 			textOutputs.add(output);
