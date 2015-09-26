@@ -12,7 +12,7 @@ public class XMLParser {
 
 	private ArrayList<String> links;
 
-	public XMLParser(File xmlFile){
+	public XMLParser(Document xmlFile){
 
 		links = new ArrayList<String>();
 		NodeList nList = createNodeList(xmlFile);
@@ -31,7 +31,7 @@ public class XMLParser {
 
 	}
 
-	public XMLParser(File xmlFile, String searchTerm){
+	public XMLParser(Document xmlFile, String searchTerm){
 		
 		links = new ArrayList<String>();
 		NodeList nList = createNodeList(xmlFile);
@@ -58,19 +58,15 @@ public class XMLParser {
 		return links;
 	}
 
-	private NodeList createNodeList(File xmlFile){
+	private NodeList createNodeList(Document xmlFile){
 		try{
-			//create a document out of the xml file to parse the elements
+			//create a document out of the xml file to parse the element
 
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document document = dBuilder.parse(xmlFile);
-
-			document.getDocumentElement().normalize();
+			xmlFile.getDocumentElement().normalize();
 
 			//creates a list of nodes separated by "item" tags
 
-			NodeList nList = document.getElementsByTagName("item");
+			NodeList nList = xmlFile.getElementsByTagName("item");
 			
 			return nList;
 			
