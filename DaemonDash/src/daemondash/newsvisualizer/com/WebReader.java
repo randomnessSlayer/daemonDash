@@ -1,4 +1,4 @@
-package com.daemondash.newsvisualizer.background;
+package daemondash.newsvisualizer.com;
 import java.io.*;
 import java.util.*;
 import org.jsoup.*;
