@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class ArticleParser {
-	public static final int NUM_POP_WORDS = 15;
-	private static final String[] commonWords = new String[] { "FOR", "THE", "SAID", "WHILE", "FROM", "AND", "WAS",
-			"WHERE", "WHAT", "WHEN", "WHERE", "WHY", "HOW", "THAT", "THEN", "THERE", "WHO", "ALL", "WERE", "INTO",
-			"HAD", "WILL", "WITH", "ARE" };
 	private ArrayList<ArrayList<Tuple<String>>> listOfWordCountsByArticle = new ArrayList<ArrayList<Tuple<String>>>();
 	private ArrayList<Tuple<String>> listOfWordCountsTotal = new ArrayList<Tuple<String>>();
 	private ArrayList<String> mostPopWords = new ArrayList<String>();
@@ -17,7 +13,7 @@ public class ArticleParser {
 	private boolean isDone = false;
 
 	public ArticleParser(final ArrayList<String> articles) {
-		numberOfTasks = articles.size() * 2 + NUM_POP_WORDS;
+		numberOfTasks = articles.size() * 2 + StaticVariables.NUM_POP_WORDS;
 		Thread t = new Thread(new Runnable() {
 
 			@Override
@@ -57,7 +53,8 @@ public class ArticleParser {
 					progress++;
 				}
 				Collections.sort(listOfWordCountsTotal);
-				for (int index = 0; index < NUM_POP_WORDS && index < listOfWordCountsTotal.size(); index++) {
+				for (int index = 0; index < StaticVariables.NUM_POP_WORDS
+						&& index < listOfWordCountsTotal.size(); index++) {
 					mostPopWords.add(listOfWordCountsTotal.get(index).getKey());
 					mostPopTuples.add(listOfWordCountsTotal.get(index));
 					progress++;
@@ -71,7 +68,7 @@ public class ArticleParser {
 	private boolean notCommonWord(String s) {
 		s = s.toUpperCase();
 		if (s.length() > 2) {
-			for (String word : commonWords) {
+			for (String word : StaticVariables.commonWords) {
 				if (word.equals(s)) {
 					return false;
 				}
