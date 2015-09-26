@@ -71,7 +71,9 @@ public class XMLParser {
 			//creates a list of nodes separated by "item" tags
 
 			NodeList nList = document.getElementsByTagName("item");
+			
 			return nList;
+			
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 			throw new IllegalArgumentException();
