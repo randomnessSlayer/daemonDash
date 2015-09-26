@@ -24,6 +24,7 @@ public class WebReader {
 			String output = "";
 			for (Element goodParagraph : goodParagraphs) {
 					String text = " " + goodParagraph.text();
+					//Removes all punctuation except apostrophes
 					text = text.replaceAll("[\\p{Punct}&&[^\\u0027]]", " ");
 					output += text;
 			}
