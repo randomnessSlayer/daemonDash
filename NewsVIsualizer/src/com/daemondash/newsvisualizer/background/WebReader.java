@@ -9,6 +9,7 @@ public class WebReader {
 	
 	public WebReader(List<String> URLs) {
 		this.URLs = URLs;
+		
 	}
 
 }
