@@ -1,6 +1,6 @@
 package daemondash.newsvisualizer.com;
 
-public class Tuple<K> {
+public class Tuple<K> implements Comparable<Tuple<K>> {
 	private K key;
 	private int value;
 
@@ -23,5 +23,21 @@ public class Tuple<K> {
 
 	public void setValue(int value) {
 		this.value = value;
+	}
+
+	@Override
+	public String toString() {
+		return "<" + this.key + ", " + this.value + ">";
+	}
+
+	@Override
+	public int compareTo(Tuple<K> o) {
+		if (o.getValue() > this.value) {
+			return 1;
+		} else if (o.getValue() < this.value) {
+			return -1;
+		} else {
+			return 0;
+		}
 	}
 }
