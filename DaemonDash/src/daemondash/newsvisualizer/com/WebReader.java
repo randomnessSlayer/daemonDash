@@ -52,7 +52,7 @@ public class WebReader {
 			});
 		}
 		es.shutdown();
-		es.awaitTermination(60, TimeUnit.SECONDS);
+		es.awaitTermination(20, TimeUnit.SECONDS);
 	}
 
 	public List<String> getOutputs() {
