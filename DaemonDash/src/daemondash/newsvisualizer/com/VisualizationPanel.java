@@ -58,6 +58,12 @@ public class VisualizationPanel extends JPanel {
 						}
 						
 						displayPane.setViewportView(wordsPanel);
+					} else {
+						JPanel nothingFoundPanel = new JPanel();
+						JLabel label = new JLabel("No articles found.");
+						label.setFont(new Font(Font.SERIF, Font.BOLD, 75));
+						nothingFoundPanel.add(label);
+						displayPane.setViewportView(nothingFoundPanel);
 					}
 				} catch (InterruptedException | IOException e1) {
 					e1.printStackTrace();
