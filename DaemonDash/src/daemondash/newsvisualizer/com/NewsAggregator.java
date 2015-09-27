@@ -3,13 +3,14 @@ package daemondash.newsvisualizer.com;
 import java.util.ArrayList;
 
 public class NewsAggregator {
-	private ArrayList<Tuple> popularWords = new ArrayList<Tuple>();
+	
+	private ArrayList<Tuple<String>> popularWords = new ArrayList<Tuple<String>>();
 	
 	public void NewsAggregator(String term){
 
-		
-
 			ArrayList<String[]> totalList = new ArrayList<String[]>();
+			ArrayList<String> allArticles = new ArrayList<String>();
+			
 			totalList.add(StaticVariables.LIST_OF_CNN_SITES);
 			totalList.add(StaticVariables.LIST_OF_BBC_SITES);
 			totalList.add(StaticVariables.LIST_OF_NY_SITES);
@@ -20,9 +21,11 @@ public class NewsAggregator {
 			for(String[] theseLinks : totalList){
 				XMLParser xmlp = new XMLParser(theseLinks,term);
 				WebReader wr = new WebReader(xmlp.retrieveLinks());
-				ArticleParser ap = new ArticleParser(wr.getOutputs());
-				popularWords.addAll(ap.getMostPopTuples());
+				allArticles.addAll(wr.getOutputs());
 			}
+			
+			ArticleParser ap = new ArticleParser(allArticles);
+			popularWords = ap.getMostPopTuples();
 
 
 
