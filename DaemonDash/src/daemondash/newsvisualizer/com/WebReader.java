@@ -12,7 +12,7 @@ import org.jsoup.select.*;
 
 public class WebReader {
 
-	private List<String> textOutputs;
+	private ArrayList<String> textOutputs;
 
 	public WebReader(List<String> URLs) throws IOException, InterruptedException {
 		textOutputs = new ArrayList<String>();
@@ -55,7 +55,7 @@ public class WebReader {
 		es.awaitTermination(20, TimeUnit.SECONDS);
 	}
 
-	public List<String> getOutputs() {
+	public ArrayList<String> getOutputs() {
 		return textOutputs;
 	}
 }
