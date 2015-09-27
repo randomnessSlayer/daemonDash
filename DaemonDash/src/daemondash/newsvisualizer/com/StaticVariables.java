@@ -7,7 +7,7 @@ public class StaticVariables {
 	public static final int TIMEOUT = 20;
 	public static final String[] commonWords = new String[] { "FOR", "THE", "SAID", "WHILE", "FROM", "AND", "WAS",
 			"WHERE", "WHAT", "WHEN", "WHY", "HOW", "THAT", "THEN", "THERE", "WHO", "ALL", "WERE", "INTO", "TIMELY",
-			"HAD", "WILL", "WITH", "ARE", "BUT", "HIS", "WOULD", "COULD", "WHICH", "THEIR", "WELL", "ABOUT",
+			"HAD", "WILL", "WITH", "ARE", "BUT", "HIS", "WOULD", "COULD", "WHICH", "THEIR", "WELL", "ABOUT", "CNN",
 			"JUST", "LIKE", "YOU", "SHE", "HER", "HIM", "SAYS", "THIS", "NOT", "THEY", "HAS", "HAVE", "NEWS", "ITS",
 			"ALSO", "OVER", "MORE", "BEEN", "BEING", "YOUR", "OUT", "AFTER", "CAN", "PEOPLE", "YEAR", "THAN", "SOME",
 			"BADGE", "MANY", "OUR", "NEW", "WORLD", "POST", "COMMENTS", "2015", "REUTERS", "TWO", "THINK",
