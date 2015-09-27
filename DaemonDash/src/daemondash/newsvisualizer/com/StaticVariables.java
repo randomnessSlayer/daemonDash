@@ -6,12 +6,13 @@ public class StaticVariables {
 	public static final int NUM_POP_WORDS = 15;
 	public static final int TIMEOUT = 20;
 	public static final String[] commonWords = new String[] { "FOR", "THE", "SAID", "WHILE", "FROM", "AND", "WAS",
-			"WHERE", "WHAT", "WHEN", "WHERE", "WHY", "HOW", "THAT", "THEN", "THERE", "WHO", "ALL", "WERE", "INTO",
-			"HAD", "WILL", "WITH", "ARE", "BUT", "HIS", "WOULD", "AT", "COULD", "WHICH", "THEIR", "WELL", "ABOUT",
+			"WHERE", "WHAT", "WHEN", "WHY", "HOW", "THAT", "THEN", "THERE", "WHO", "ALL", "WERE", "INTO",
+			"HAD", "WILL", "WITH", "ARE", "BUT", "HIS", "WOULD", "COULD", "WHICH", "THEIR", "WELL", "ABOUT",
 			"JUST", "LIKE", "YOU", "SHE", "HER", "HIM", "SAYS", "THIS", "NOT", "THEY", "HAS", "HAVE", "NEWS", "ITS",
 			"ALSO", "OVER", "MORE", "BEEN", "BEING", "YOUR", "OUT", "AFTER", "CAN", "PEOPLE", "YEAR", "THAN", "SOME",
-			"BADGE", "MANY", "OUR", "YOUR", "NEW", "WORLD", "POST", "COMMENTS", "2015", "REUTERS", "TWO",
-			"BADGES", "ONE", "FIRST", "TIME", "NOW", "THEM", "OTHER", "WEEK", "YEARS", "ADVERTISEMENT"};
+			"BADGE", "MANY", "OUR", "NEW", "WORLD", "POST", "COMMENTS", "2015", "REUTERS", "TWO", "THINK",
+			"BADGES", "ONE", "FIRST", "TIME", "NOW", "THEM", "OTHER", "WEEK", "YEARS", "ADVERTISEMENT", "BEFORE",
+			"KNOW", "WANT", "MOST", "LEAST", "SEE", "BACK", "PLEASE", "REQUEST", "MINUTES", "CONSISTENTLY", "HERE"};
 
 	public static final String[] ARRAY_OF_CNN_SITES = new String[] { "http://rss.cnn.com/rss/cnn_topstories.rss",
 			"http://rss.cnn.com/rss/cnn_world.rss", "http://rss.cnn.com/rss/cnn_us.rss",
