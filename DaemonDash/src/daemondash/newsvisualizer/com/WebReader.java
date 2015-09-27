@@ -40,6 +40,7 @@ public class WebReader {
 							String text = " " + goodParagraph.text();
 							// Removes all punctuation except apostrophes
 							text = text.replaceAll("[\\p{Punct}&&[^\\u0027]]", " ");
+							text = text.replaceAll("\\u0027s", " ");
 							text = text.toUpperCase(Locale.ENGLISH);
 							output += text;
 						}
