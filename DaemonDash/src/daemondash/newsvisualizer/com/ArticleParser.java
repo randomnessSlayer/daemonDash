@@ -17,7 +17,8 @@ public class ArticleParser {
 
 	public ArticleParser(String searchTerm, final ArrayList<String> articles) throws InterruptedException {
 		this.searchTerm = searchTerm;
-		this.searchTerm = this.searchTerm.toUpperCase(Locale.ENGLISH);
+		if (searchTerm != null)
+			this.searchTerm = this.searchTerm.toUpperCase(Locale.ENGLISH);
 		
 		for (final String s : articles) {
 			String[] strArr = s.split("\\s+");
@@ -52,9 +53,11 @@ public class ArticleParser {
 
 	private boolean notCommonWord(String s) {
 		ArrayList<String> commonWords = (ArrayList<String>) StaticVariables.LIST_OF_COMMON_WORDS.clone();
-		String[] terms = searchTerm.split("\\s+");
-		for (String term : terms) {
-			commonWords.add(term);
+		if (searchTerm != null) {
+			String[] terms = searchTerm.split("\\s+");
+			for (String term : terms) {
+				commonWords.add(term);
+			}
 		}
 		
 		s = s.toUpperCase();
