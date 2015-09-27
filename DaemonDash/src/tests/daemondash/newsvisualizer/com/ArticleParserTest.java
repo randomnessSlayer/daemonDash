@@ -16,7 +16,7 @@ public class ArticleParserTest {
 	public static void main(String[] args)
 			throws IOException, ParserConfigurationException, SAXException, InterruptedException {
 		long initTime = System.currentTimeMillis();
-		XMLParser xmlParser = new XMLParser(StaticVariables.LIST_OF_ALL_SITES, "donald trump");
+		XMLParser xmlParser = new XMLParser(StaticVariables.LIST_OF_ALL_SITES, "pope francis");
 		if (xmlParser.foundStuff()) {
 			long newTime = System.currentTimeMillis();
 			System.out.println("XMLParser Time Lapsed: " + (newTime - initTime) / 1000.0);
@@ -26,7 +26,7 @@ public class ArticleParserTest {
 			newTime = System.currentTimeMillis();
 			System.out.println("WebReader Time Lapsed: " + (newTime - initTime) / 1000.0);
 			initTime = newTime;
-			ArticleParser parser = new ArticleParser("donald trump", reader.getOutputs());
+			ArticleParser parser = new ArticleParser("pope francis", reader.getOutputs());
 			newTime = System.currentTimeMillis();
 			System.out.println("ArticleParser Time Lapsed: " + (newTime - initTime) / 1000.0);
 			initTime = newTime;
