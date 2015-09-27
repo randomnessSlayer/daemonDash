@@ -14,6 +14,7 @@ public class XMLParser {
 
 	private ArrayList<String> links;
 	private int throwOutCounter = 0;
+	private boolean foundStuff;
 
 	public XMLParser(String feed) throws InterruptedException {
 		links = new ArrayList<String>();
@@ -40,6 +41,7 @@ public class XMLParser {
 		} catch (IOException e) {
 			System.err.println(e.getMessage() + ": Excluding link. (#" + throwOutCounter + ") Feed: " + feed);
 		}
+		foundStuff = (links.size() > 0);
 	}
 
 	public XMLParser(String feed, final String searchTerm) throws InterruptedException {
@@ -78,7 +80,7 @@ public class XMLParser {
 		{
 			System.err.println(e.getMessage() + ": Excluding link. (#" + throwOutCounter + ") Feed: " + feed);
 		}
-
+		foundStuff = (links.size() > 0);
 	}
 
 	public XMLParser(List<String> feeds) throws InterruptedException {
@@ -108,6 +110,7 @@ public class XMLParser {
 		}
 		es.shutdown();
 		es.awaitTermination(StaticVariables.TIMEOUT, TimeUnit.SECONDS);
+		foundStuff = (links.size() > 0);
 	}
 
 	public XMLParser(List<String> feeds, String searchTerm) throws InterruptedException {
@@ -143,6 +146,11 @@ public class XMLParser {
 		}
 		es.shutdown();
 		es.awaitTermination(StaticVariables.TIMEOUT, TimeUnit.SECONDS);
+		foundStuff = (links.size() > 0);
+	}
+	
+	public boolean foundStuff(){
+		return foundStuff;
 	}
 
 	public ArrayList<String> retrieveLinks() {

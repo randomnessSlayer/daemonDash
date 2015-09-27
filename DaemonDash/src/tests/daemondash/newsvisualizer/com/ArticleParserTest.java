@@ -16,21 +16,25 @@ public class ArticleParserTest {
 	public static void main(String[] args)
 			throws IOException, ParserConfigurationException, SAXException, InterruptedException {
 		long initTime = System.currentTimeMillis();
-		XMLParser xmlParser = new XMLParser(StaticVariables.LIST_OF_ALL_SITES,"trump");
-		long newTime = System.currentTimeMillis();
-		System.out.println("XMLParser Time Lapsed: " + (newTime - initTime) / 1000.0);
-		initTime = newTime;
-		System.out.println("Num RSS Feeds Used:" + xmlParser.retrieveLinks().size());
-		WebReader reader = new WebReader(xmlParser.retrieveLinks());
-		newTime = System.currentTimeMillis();
-		System.out.println("WebReader Time Lapsed: " + (newTime - initTime) / 1000.0);
-		initTime = newTime;
-		ArticleParser parser = new ArticleParser(reader.getOutputs());
-		newTime = System.currentTimeMillis();
-		System.out.println("ArticleParser Time Lapsed: " + (newTime - initTime) / 1000.0);
-		initTime = newTime;
-		for (Tuple<String> s : parser.getMostPopTuples()) {
-			System.out.println(s);
+		XMLParser xmlParser = new XMLParser(StaticVariables.LIST_OF_ALL_SITES, "karist");
+		if (xmlParser.foundStuff()) {
+			long newTime = System.currentTimeMillis();
+			System.out.println("XMLParser Time Lapsed: " + (newTime - initTime) / 1000.0);
+			initTime = newTime;
+			System.out.println("Num RSS Feeds Used:" + xmlParser.retrieveLinks().size());
+			WebReader reader = new WebReader(xmlParser.retrieveLinks());
+			newTime = System.currentTimeMillis();
+			System.out.println("WebReader Time Lapsed: " + (newTime - initTime) / 1000.0);
+			initTime = newTime;
+			ArticleParser parser = new ArticleParser(reader.getOutputs());
+			newTime = System.currentTimeMillis();
+			System.out.println("ArticleParser Time Lapsed: " + (newTime - initTime) / 1000.0);
+			initTime = newTime;
+			for (Tuple<String> s : parser.getMostPopTuples()) {
+				System.out.println(s);
+			}
+		}else{
+			System.out.println("Term not found.");
 		}
 	}
 
