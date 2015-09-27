@@ -16,7 +16,7 @@ public class ArticleParserTest {
 	public static void main(String[] args)
 			throws IOException, ParserConfigurationException, SAXException, InterruptedException {
 		long initTime = System.currentTimeMillis();
-		XMLParser xmlParser = new XMLParser(StaticVariables.LIST_OF_ALL_SITES,"boehner");
+		XMLParser xmlParser = new XMLParser(StaticVariables.LIST_OF_ALL_SITES,"trump");
 		long newTime = System.currentTimeMillis();
 		System.out.println("XMLParser Time Lapsed: " + (newTime - initTime) / 1000.0);
 		initTime = newTime;

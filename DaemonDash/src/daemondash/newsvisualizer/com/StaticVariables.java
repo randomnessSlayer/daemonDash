@@ -10,7 +10,7 @@ public class StaticVariables {
 			"HAD", "WILL", "WITH", "ARE", "BUT", "HIS", "WOULD", "AT", "COULD", "WHICH", "THEIR", "WELL", "ABOUT",
 			"JUST", "LIKE", "YOU", "SHE", "HER", "HIM", "SAYS", "THIS", "NOT", "THEY", "HAS", "HAVE", "NEWS", "ITS",
 			"ALSO", "OVER", "MORE", "BEEN", "BEING", "YOUR", "OUT", "AFTER", "CAN", "PEOPLE", "YEAR", "THAN", "SOME",
-			"BADGE", "MANY", "OUR", "YOUR", "IT'S", "NEW", "WORLD", "POST", "COMMENTS", "2015", "REUTERS", "TWO",
+			"BADGE", "MANY", "OUR", "YOUR", "NEW", "WORLD", "POST", "COMMENTS", "2015", "REUTERS", "TWO",
 			"BADGES", "ONE", "FIRST", "TIME", "NOW", "THEM", "OTHER", "WEEK", "YEARS", "ADVERTISEMENT"};
 
 	public static final String[] ARRAY_OF_CNN_SITES = new String[] { "http://rss.cnn.com/rss/cnn_topstories.rss",
