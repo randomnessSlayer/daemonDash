@@ -67,6 +67,8 @@ public class StaticVariables {
 			"http://america.aljazeera.com/content/ajam/articles.rss" };
 
 	public static final ArrayList<String> LIST_OF_AJ_SITES = asArray(ARRAY_OF_AJ_SITES);
+	
+	public static final ArrayList<String> LIST_OF_ALL_SITES = combineAllLists();
 
 	private static ArrayList<String> asArray(String[] arrayOfSites) {
 		ArrayList<String> stringList = new ArrayList<String>();
@@ -74,5 +76,15 @@ public class StaticVariables {
 			stringList.add(s);
 		}
 		return stringList;
+	}
+
+	private static ArrayList<String> combineAllLists() {
+		ArrayList<String> allLists = LIST_OF_AJ_SITES;
+		allLists.addAll(LIST_OF_AP_SITES);
+		allLists.addAll(LIST_OF_BBC_SITES);
+		allLists.addAll(LIST_OF_CNN_SITES);
+		allLists.addAll(LIST_OF_NY_SITES);
+		allLists.addAll(LIST_OF_WASHPOST_SITES);
+		return allLists;
 	}
 }
