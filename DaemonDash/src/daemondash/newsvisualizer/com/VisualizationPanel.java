@@ -52,7 +52,7 @@ public class VisualizationPanel extends JPanel {
 						wordsPanel.setLayout(new BoxLayout(wordsPanel, BoxLayout.Y_AXIS));
 						
 						for (Tuple<String> tuple : parser.getMostPopTuples()) {
-							JLabel label = new JLabel(tuple.getKey());
+							JLabel label = new JLabel(tuple.getKey() + " (" + tuple.getValue() + ")");
 							label.setFont(new Font(Font.SERIF, Font.BOLD, (int) (75 * ((double) tuple.getValue() / highest))));
 							wordsPanel.add(label);
 						}
@@ -82,8 +82,8 @@ public class VisualizationPanel extends JPanel {
 		
 		displayPane = new JScrollPane();
 		displayPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		displayPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		c.insets = new Insets(30, 30, 30, 30);
+		displayPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		c.insets = new Insets(30, 30, 5, 30);
 		c.fill = GridBagConstraints.BOTH;
 		c.weightx = 1;
 		c.weighty = 1;
