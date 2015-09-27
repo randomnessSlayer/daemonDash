@@ -26,7 +26,7 @@ public class NewsAggregator {
 			allArticles.addAll(wr.getOutputs());
 		}
 
-		ArticleParser ap = new ArticleParser(allArticles);
+		ArticleParser ap = new ArticleParser(term, allArticles);
 		setPopularWords(ap.getMostPopTuples());
 	}
 

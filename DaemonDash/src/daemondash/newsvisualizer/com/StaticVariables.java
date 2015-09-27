@@ -13,7 +13,9 @@ public class StaticVariables {
 			"BADGE", "MANY", "OUR", "NEW", "WORLD", "POST", "COMMENTS", "2015", "REUTERS", "TWO", "THINK",
 			"BADGES", "ONE", "FIRST", "TIME", "NOW", "THEM", "OTHER", "WEEK", "YEARS", "ADVERTISEMENT", "BEFORE",
 			"KNOW", "WANT", "MOST", "LEAST", "SEE", "BACK", "PLEASE", "REQUEST", "MINUTES", "CONSISTENTLY", "HERE"};
-
+	
+	public static final ArrayList<String> LIST_OF_COMMON_WORDS = asArray(commonWords);
+	
 	public static final String[] ARRAY_OF_CNN_SITES = new String[] { "http://rss.cnn.com/rss/cnn_topstories.rss",
 			"http://rss.cnn.com/rss/cnn_world.rss", "http://rss.cnn.com/rss/cnn_us.rss",
 			"http://rss.cnn.com/rss/money_latest.rss", "http://rss.cnn.com/rss/cnn_allpolitics.rss",
