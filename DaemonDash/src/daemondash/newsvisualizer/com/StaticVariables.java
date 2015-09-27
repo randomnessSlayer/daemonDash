@@ -12,7 +12,9 @@ public class StaticVariables {
 			"ALSO", "OVER", "MORE", "BEEN", "BEING", "YOUR", "OUT", "AFTER", "CAN", "PEOPLE", "YEAR", "THAN", "SOME",
 			"BADGE", "MANY", "OUR", "NEW", "WORLD", "POST", "COMMENTS", "2015", "REUTERS", "TWO", "THINK", "EVERY",
 			"BADGES", "ONE", "FIRST", "TIME", "NOW", "THEM", "OTHER", "WEEK", "YEARS", "ADVERTISEMENT", "BEFORE",
-			"KNOW", "WANT", "MOST", "LEAST", "SEE", "BACK", "PLEASE", "REQUEST", "MINUTES", "CONSISTENTLY", "HERE"};
+			"KNOW", "WANT", "MOST", "LEAST", "SEE", "BACK", "PLEASE", "REQUEST", "MINUTES", "CONSISTENTLY", "HERE",
+			"AGAINST", "TOLD", "THOUGHT", "PERCENT", "EVEN", "RATE", "SECOND", "THIRD", "FOURTH", "SECONDLY", "THIRDLY",
+			"FINALLY", "NEARLY", "QUICKLY", "INC", "BROWSER", "PROVIDED", "STORY"};
 	
 	public static final ArrayList<String> LIST_OF_COMMON_WORDS = asArray(commonWords);
 	
