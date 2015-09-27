@@ -17,7 +17,7 @@ import daemondash.newsvisualizer.com.XMLParser;
 
 public class XMLParserTest {
 	
-	public static void main(String[] args) throws IOException, URISyntaxException, ParserConfigurationException, SAXException{
+	public static void main(String[] args) throws IOException, URISyntaxException, ParserConfigurationException, SAXException, InterruptedException{
 		XMLParser xmlp = new XMLParser("http://rss.cnn.com/rss/cnn_topstories.rss", "orange");
 		ArrayList<String> links = xmlp.retrieveLinks();
 		for(String s : links){
