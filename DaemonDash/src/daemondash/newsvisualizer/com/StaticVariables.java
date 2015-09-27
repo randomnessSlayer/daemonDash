@@ -5,5 +5,5 @@ public class StaticVariables {
 	public static final String[] commonWords = new String[] { "FOR", "THE", "SAID", "WHILE", "FROM", "AND", "WAS",
 			"WHERE", "WHAT", "WHEN", "WHERE", "WHY", "HOW", "THAT", "THEN", "THERE", "WHO", "ALL", "WERE", "INTO",
 			"HAD", "WILL", "WITH", "ARE", "BUT", "HIS", "WOULD", "AT", "COULD", "WHICH", "THEIR", "WELL", "ABOUT", 
-			"JUST", "LIKE" };
+			"JUST", "LIKE", "YOU", "SHE", "HER", "HIM" };
 }
