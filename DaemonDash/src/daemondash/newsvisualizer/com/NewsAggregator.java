@@ -37,4 +37,5 @@ public class NewsAggregator {
 	private void setPopularWords(ArrayList<Tuple<String>> popularWords) {
 		this.popularWords = popularWords;
 	}
+	
 }
