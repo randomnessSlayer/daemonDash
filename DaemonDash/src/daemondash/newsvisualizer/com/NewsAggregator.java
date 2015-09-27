@@ -1,6 +1,7 @@
 package daemondash.newsvisualizer.com;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NewsAggregator {
 	
@@ -8,7 +9,7 @@ public class NewsAggregator {
 	
 	public void NewsAggregator(String term){
 
-			ArrayList<String[]> totalList = new ArrayList<String[]>();
+			ArrayList<List<String>> totalList = new ArrayList<List<String>>();
 			ArrayList<String> allArticles = new ArrayList<String>();
 			
 			totalList.add(StaticVariables.LIST_OF_CNN_SITES);
