@@ -17,7 +17,7 @@ public class NewsAggregator {
 		totalList.add(StaticVariables.LIST_OF_BBC_SITES);
 		totalList.add(StaticVariables.LIST_OF_NY_SITES);
 		totalList.add(StaticVariables.LIST_OF_WASHPOST_SITES);
-		totalList.add(StaticVariables.LIST_OF_AP_SITES);
+		totalList.add(StaticVariables.LIST_OF_REUTERS_SITES);
 		totalList.add(StaticVariables.LIST_OF_AJ_SITES);
 
 		for (List<String> theseLinks : totalList) {

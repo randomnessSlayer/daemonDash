@@ -1,7 +1,6 @@
 package tests.daemondash.newsvisualizer.com;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -16,15 +15,20 @@ import daemondash.newsvisualizer.com.XMLParser;
 public class ArticleParserTest {
 	public static void main(String[] args)
 			throws IOException, ParserConfigurationException, SAXException, InterruptedException {
-		ArrayList<String> articles = new ArrayList<String>();
-		XMLParser xmlParser = new XMLParser(StaticVariables.LIST_OF_ALL_SITES);
-		ArrayList<String> list = new ArrayList<String>();
-		list.add("http://www.cnn.com/2015/09/25/politics/china-state-dinner/index.html");
-		list.addAll(xmlParser.retrieveLinks());
-		System.out.println(list.size());
-		WebReader reader = new WebReader(list);
-		articles.addAll(reader.getOutputs());
-		ArticleParser parser = new ArticleParser(articles);
+		long initTime = System.currentTimeMillis();
+		XMLParser xmlParser = new XMLParser(StaticVariables.LIST_OF_ALL_SITES,"boehner");
+		long newTime = System.currentTimeMillis();
+		System.out.println("XMLParser Time Lapsed: " + (newTime - initTime) / 1000.0);
+		initTime = newTime;
+		System.out.println("Num RSS Feeds Used:" + xmlParser.retrieveLinks().size());
+		WebReader reader = new WebReader(xmlParser.retrieveLinks());
+		newTime = System.currentTimeMillis();
+		System.out.println("WebReader Time Lapsed: " + (newTime - initTime) / 1000.0);
+		initTime = newTime;
+		ArticleParser parser = new ArticleParser(reader.getOutputs());
+		newTime = System.currentTimeMillis();
+		System.out.println("ArticleParser Time Lapsed: " + (newTime - initTime) / 1000.0);
+		initTime = newTime;
 		for (Tuple<String> s : parser.getMostPopTuples()) {
 			System.out.println(s);
 		}

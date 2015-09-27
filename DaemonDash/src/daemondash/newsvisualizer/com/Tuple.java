@@ -40,4 +40,10 @@ public class Tuple<K> implements Comparable<Tuple<K>> {
 			return 0;
 		}
 	}
+	
+	@Override
+	public boolean equals(Object o){
+		Tuple<K> obj = (Tuple<K>) o;
+		return this.key.equals(obj.getKey());
+	}
 }

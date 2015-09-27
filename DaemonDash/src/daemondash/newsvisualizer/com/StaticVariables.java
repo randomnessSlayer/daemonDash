@@ -8,7 +8,10 @@ public class StaticVariables {
 	public static final String[] commonWords = new String[] { "FOR", "THE", "SAID", "WHILE", "FROM", "AND", "WAS",
 			"WHERE", "WHAT", "WHEN", "WHERE", "WHY", "HOW", "THAT", "THEN", "THERE", "WHO", "ALL", "WERE", "INTO",
 			"HAD", "WILL", "WITH", "ARE", "BUT", "HIS", "WOULD", "AT", "COULD", "WHICH", "THEIR", "WELL", "ABOUT",
-			"JUST", "LIKE", "YOU", "SHE", "HER", "HIM", "SAYS", "THIS", "NOT", "THEY" };
+			"JUST", "LIKE", "YOU", "SHE", "HER", "HIM", "SAYS", "THIS", "NOT", "THEY", "HAS", "HAVE", "NEWS", "ITS",
+			"ALSO", "OVER", "MORE", "BEEN", "BEING", "YOUR", "OUT", "AFTER", "CAN", "PEOPLE", "YEAR", "THAN", "SOME",
+			"BADGE", "MANY", "OUR", "YOUR", "IT'S", "NEW", "WORLD", "POST", "COMMENTS", "2015", "REUTERS", "TWO",
+			"BADGES", "ONE", "FIRST", "TIME", "NOW", "THEM", "OTHER", "WEEK", "YEARS", "ADVERTISEMENT"};
 
 	public static final String[] ARRAY_OF_CNN_SITES = new String[] { "http://rss.cnn.com/rss/cnn_topstories.rss",
 			"http://rss.cnn.com/rss/cnn_world.rss", "http://rss.cnn.com/rss/cnn_us.rss",
@@ -40,35 +43,35 @@ public class StaticVariables {
 			"http://rss.nytimes.com/services/xml/rss/nyt/InternationalHome.xml" };
 
 	public static final ArrayList<String> LIST_OF_NY_SITES = asArray(ARRAY_OF_NY_SITES);
-	
+
 	public static final String[] ARRAY_OF_WASHPOST_SITES = new String[] { "http://feeds.washingtonpost.com/rss/sports",
 			"http://feeds.washingtonpost.com/rss/national", "http://feeds.washingtonpost.com/rss/world",
 			"http://feeds.washingtonpost.com/rss/business", "http://feeds.washingtonpost.com/rss/entertainment",
 			"http://feeds.washingtonpost.com/rss/politics" };
 
 	public static final ArrayList<String> LIST_OF_WASHPOST_SITES = asArray(ARRAY_OF_WASHPOST_SITES);
-	
-	public static final String[] ARRAY_OF_AP_SITES = new String[] {
-			"http://hosted2.ap.org/atom/APDEFAULT/3d281c11a96b4ad082fe88aa0db04305",
-			"http://hosted2.ap.org/atom/APDEFAULT/386c25518f464186bf7a2ac026580ce7",
-			"http://hosted2.ap.org/atom/APDEFAULT/cae69a7523db45408eeb2b3a98c0c9c5",
-			"http://hosted2.ap.org/atom/APDEFAULT/89ae8247abe8493fae24405546e9a1aa",
-			"http://hosted2.ap.org/atom/APDEFAULT/f70471f764144b2fab526d39972d37b3",
-			"http://hosted2.ap.org/atom/APDEFAULT/495d344a0d10421e9baa8ee77029cfbd",
-			"http://hosted2.ap.org/atom/APDEFAULT/347875155d53465d95cec892aeb06419",
-			"http://hosted2.ap.org/atom/APDEFAULT/4e67281c3f754d0696fbfdee0f3f1469",
-			"http://hosted2.ap.org/atom/APDEFAULT/bbd825583c8542898e6fa7d440b9febc",
-			"http://hosted2.ap.org/atom/APDEFAULT/b2f0ca3a594644ee9e50a8ec4ce2d6de",
-			"http://hosted2.ap.org/atom/APDEFAULT/aa9398e6757a46fa93ed5dea7bd3729e" };
-	
-	public static final ArrayList<String> LIST_OF_AP_SITES = asArray(ARRAY_OF_AP_SITES);
-	
+
+	public static final String[] ARRAY_OF_REUTERS_SITES = new String[] { "http://feeds.reuters.com/news/artsculture",
+			"http://feeds.reuters.com/reuters/businessNews", "http://feeds.reuters.com/reuters/companyNews",
+			"http://feeds.reuters.com/reuters/entertainment", "http://feeds.reuters.com/reuters/environment",
+			"http://feeds.reuters.com/reuters/healthNews", "http://feeds.reuters.com/reuters/lifestyle",
+			"http://feeds.reuters.com/news/reutersmedia", "http://feeds.reuters.com/news/wealth",
+			"http://feeds.reuters.com/reuters/MostRead", "http://feeds.reuters.com/reuters/oddlyEnoughNews",
+			"http://feeds.reuters.com/ReutersPictures", "http://feeds.reuters.com/reuters/peopleNews",
+			"http://feeds.reuters.com/Reuters/PoliticsNews", "http://feeds.reuters.com/reuters/scienceNews",
+			"http://feeds.reuters.com/reuters/sportsNews", "http://feeds.reuters.com/reuters/technologyNews",
+			"http://feeds.reuters.com/reuters/topNews", "http://feeds.reuters.com/Reuters/domesticNews",
+			"http://feeds.reuters.com/Reuters/worldNews" };
+
+	public static final ArrayList<String> LIST_OF_REUTERS_SITES = asArray(ARRAY_OF_REUTERS_SITES);
+
 	public static final String[] ARRAY_OF_AJ_SITES = new String[] { "http://www.aljazeera.com/xml/rss/all.xml",
 			"http://america.aljazeera.com/content/ajam/articles.rss" };
 
 	public static final ArrayList<String> LIST_OF_AJ_SITES = asArray(ARRAY_OF_AJ_SITES);
-	
+
 	public static final ArrayList<String> LIST_OF_ALL_SITES = combineAllLists();
+	public static final int MAX_THREADS = 25;
 
 	private static ArrayList<String> asArray(String[] arrayOfSites) {
 		ArrayList<String> stringList = new ArrayList<String>();
@@ -80,7 +83,7 @@ public class StaticVariables {
 
 	private static ArrayList<String> combineAllLists() {
 		ArrayList<String> allLists = LIST_OF_AJ_SITES;
-		allLists.addAll(LIST_OF_AP_SITES);
+		allLists.addAll(LIST_OF_REUTERS_SITES);
 		allLists.addAll(LIST_OF_BBC_SITES);
 		allLists.addAll(LIST_OF_CNN_SITES);
 		allLists.addAll(LIST_OF_NY_SITES);

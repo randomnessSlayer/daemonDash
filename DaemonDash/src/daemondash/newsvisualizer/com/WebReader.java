@@ -11,12 +11,13 @@ import org.jsoup.nodes.*;
 import org.jsoup.select.*;
 
 public class WebReader {
+	private int throwOutCounter = 0;
 
 	private ArrayList<String> textOutputs;
 
 	public WebReader(List<String> URLs) throws IOException, InterruptedException {
 		textOutputs = new ArrayList<String>();
-		ExecutorService es = Executors.newFixedThreadPool(URLs.size() / 2);
+		ExecutorService es = Executors.newFixedThreadPool((URLs.size() + 1) / 2);
 
 		for (final String URL : URLs) {
 			es.submit(new Runnable() {
@@ -25,8 +26,7 @@ public class WebReader {
 				public void run() {
 					try {
 						Document doc;
-
-						doc = Jsoup.connect(URL).get();
+						doc = Jsoup.connect(URL).timeout(StaticVariables.TIMEOUT * 500).get();
 						Elements paragraphs = doc.getElementsByTag("p");
 						Elements goodParagraphs = new Elements();
 						for (Element paragraph : paragraphs) {
@@ -46,14 +46,15 @@ public class WebReader {
 						}
 						textOutputs.add(output);
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						throwOutCounter++;
+						System.err.println(
+								e.getMessage() + ": Threw out article site. (#" + throwOutCounter + ") URL: " + URL);
 					}
 				}
 			});
 		}
 		es.shutdown();
-		es.awaitTermination(20, TimeUnit.SECONDS);
+		es.awaitTermination(40, TimeUnit.SECONDS);
 	}
 
 	public ArrayList<String> getOutputs() {

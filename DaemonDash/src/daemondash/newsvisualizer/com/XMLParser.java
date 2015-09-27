@@ -13,52 +13,96 @@ import java.util.concurrent.TimeUnit;
 public class XMLParser {
 
 	private ArrayList<String> links;
+	private int throwOutCounter = 0;
 
-	public XMLParser(String feed) throws IOException, InterruptedException {
+	public XMLParser(String feed) throws InterruptedException {
 		links = new ArrayList<String>();
 
-		Document doc = Jsoup.connect(feed).get();
-		doc = Jsoup.parse(doc.html(), "", Parser.xmlParser());
-		Elements elements = doc.getElementsByTag("item");
+		try {
+			Document doc = Jsoup.connect(feed).timeout(StaticVariables.TIMEOUT * 200).get();
+			doc = Jsoup.parse(doc.html(), "", Parser.xmlParser());
+			Elements elements = doc.getElementsByTag("item");
 
-		ExecutorService es = Executors.newFixedThreadPool(elements.size() / 2);
+			ExecutorService es = Executors
+					.newFixedThreadPool(Math.min(StaticVariables.MAX_THREADS, (elements.size() + 1) / 2));
 
-		for (final Element element : elements) {
-			es.submit(new Runnable() {
+			for (final Element element : elements) {
+				es.submit(new Runnable() {
 
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					links.add(element.getElementsByTag("link").first().text());
-				}
-			});
-		}
-		es.shutdown();
-		es.awaitTermination(StaticVariables.TIMEOUT, TimeUnit.SECONDS);
-	}
-
-	public XMLParser(String feed, final String searchTerm) throws IOException, InterruptedException {
-		links = new ArrayList<String>();
-
-		Document doc = Jsoup.connect(feed).get();
-		doc = Jsoup.parse(doc.html(), "", Parser.xmlParser());
-		Elements elements = doc.getElementsByTag("item");
-
-		ExecutorService es = Executors.newFixedThreadPool(elements.size() / 2);
-
-		for (final Element element : elements) {
-			es.submit(new Runnable() {
-
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					String title = element.getElementsByTag("title").first().text();
-					String description = element.getElementsByTag("description").first().text();
-
-					if (title.contains(searchTerm) || description.contains(searchTerm)) {
+					@Override
+					public void run() {
 						links.add(element.getElementsByTag("link").first().text());
 					}
+				});
+			}
+			es.shutdown();
+			es.awaitTermination(StaticVariables.TIMEOUT, TimeUnit.SECONDS);
+		} catch (IOException e) {
+			System.err.println(e.getMessage() + ": Excluding link. (#" + throwOutCounter + ") Feed: " + feed);
+		}
+	}
 
+	public XMLParser(String feed, final String searchTerm) throws InterruptedException {
+		links = new ArrayList<String>();
+		final String term = searchTerm.toUpperCase();
+
+		try {
+			Document doc = Jsoup.connect(feed).timeout(StaticVariables.TIMEOUT * 200).get();
+			doc = Jsoup.parse(doc.html(), "", Parser.xmlParser());
+			Elements elements = doc.getElementsByTag("item");
+
+			ExecutorService es = Executors
+					.newFixedThreadPool(Math.min(StaticVariables.MAX_THREADS, (elements.size() + 1) / 2));
+
+			for (final Element element : elements) {
+				es.submit(new Runnable() {
+
+					@Override
+					public void run() {
+						String title = element.getElementsByTag("title").first().text().toUpperCase();
+						String description = element.getElementsByTag("description").first().text().toUpperCase();
+
+						if (title.contains(term) || description.contains(term)) {
+							links.add(element.getElementsByTag("link").first().text());
+						}
+
+					}
+				});
+			}
+			es.shutdown();
+			es.awaitTermination(StaticVariables.TIMEOUT, TimeUnit.SECONDS);
+		} catch (
+
+		IOException e)
+
+		{
+			System.err.println(e.getMessage() + ": Excluding link. (#" + throwOutCounter + ") Feed: " + feed);
+		}
+
+	}
+
+	public XMLParser(List<String> feeds) throws InterruptedException {
+		links = new ArrayList<String>();
+
+		ExecutorService es = Executors
+				.newFixedThreadPool(Math.min(StaticVariables.MAX_THREADS, (feeds.size() + 1) / 2));
+		for (final String feed : feeds) {
+			es.submit(new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+						Document doc = Jsoup.connect(feed).timeout(StaticVariables.TIMEOUT * 200).get();
+						doc = Jsoup.parse(doc.html(), "", Parser.xmlParser());
+						Elements elements = doc.getElementsByTag("item");
+						for (final Element element : elements) {
+							links.add(element.getElementsByTag("link").first().text());
+						}
+
+					} catch (IOException e) {
+						System.err
+								.println(e.getMessage() + ": Excluding link. (#" + throwOutCounter + ") Feed: " + feed);
+					}
 				}
 			});
 		}
@@ -66,58 +110,39 @@ public class XMLParser {
 		es.awaitTermination(StaticVariables.TIMEOUT, TimeUnit.SECONDS);
 	}
 
-	public XMLParser(List<String> feeds) throws IOException, InterruptedException {
+	public XMLParser(List<String> feeds, String searchTerm) throws InterruptedException {
 		links = new ArrayList<String>();
+		final String term = searchTerm.toUpperCase();
+		ExecutorService es = Executors
+				.newFixedThreadPool(Math.min(StaticVariables.MAX_THREADS, (feeds.size() + 1) / 2));
+		for (final String feed : feeds) {
+			es.submit(new Runnable() {
 
-		for (String feed : feeds) {
-			Document doc = Jsoup.connect(feed).get();
-			doc = Jsoup.parse(doc.html(), "", Parser.xmlParser());
-			Elements elements = doc.getElementsByTag("item");
+				@Override
+				public void run() {
+					try {
+						Document doc = Jsoup.connect(feed).timeout(StaticVariables.TIMEOUT * 200).get();
+						doc = Jsoup.parse(doc.html(), "", Parser.xmlParser());
+						Elements elements = doc.getElementsByTag("item");
 
-			ExecutorService es = Executors.newFixedThreadPool(elements.size() / 2);
+						for (final Element element : elements) {
 
-			for (final Element element : elements) {
-				es.submit(new Runnable() {
+							String title = element.getElementsByTag("title").first().text().toUpperCase();
+							String description = element.getElementsByTag("description").first().text().toUpperCase();
 
-					@Override
-					public void run() {
-						String title = element.getElementsByTag("title").first().text();
-						String description = element.getElementsByTag("description").first().text();
-					}
-				});
-			}
-			es.shutdown();
-			es.awaitTermination(StaticVariables.TIMEOUT, TimeUnit.SECONDS);
-		}
-	}
-
-	public XMLParser(List<String> feeds, final String searchTerm) throws IOException, InterruptedException {
-		links = new ArrayList<String>();
-
-		for (String feed : feeds) {
-			Document doc = Jsoup.connect(feed).get();
-			doc = Jsoup.parse(doc.html(), "", Parser.xmlParser());
-			Elements elements = doc.getElementsByTag("item");
-
-			ExecutorService es = Executors.newFixedThreadPool(elements.size() / 2);
-
-			for (final Element element : elements) {
-				es.submit(new Runnable() {
-
-					@Override
-					public void run() {
-						String title = element.getElementsByTag("title").first().text();
-						String description = element.getElementsByTag("description").first().text();
-
-						if (title.contains(searchTerm) || description.contains(searchTerm)) {
-							links.add(element.getElementsByTag("link").first().text());
+							if (title.contains(term) || description.contains(term)) {
+								links.add(element.getElementsByTag("link").first().text());
+							}
 						}
+					} catch (IOException e) {
+						System.err
+								.println(e.getMessage() + ": Excluding link. (#" + throwOutCounter + ") Feed: " + feed);
 					}
-				});
-			}
-			es.shutdown();
-			es.awaitTermination(StaticVariables.TIMEOUT, TimeUnit.SECONDS);
+				}
+			});
 		}
+		es.shutdown();
+		es.awaitTermination(StaticVariables.TIMEOUT, TimeUnit.SECONDS);
 	}
 
 	public ArrayList<String> retrieveLinks() {

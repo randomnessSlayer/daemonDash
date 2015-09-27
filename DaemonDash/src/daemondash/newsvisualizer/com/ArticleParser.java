@@ -13,47 +13,28 @@ public class ArticleParser {
 	private ArrayList<Tuple<String>> mostPopTuples = new ArrayList<Tuple<String>>();
 
 	public ArticleParser(final ArrayList<String> articles) throws InterruptedException {
-		ExecutorService es = Executors.newFixedThreadPool(articles.size() / 2);
 		for (final String s : articles) {
-			es.submit(new Runnable() {
-
-				@Override
-				public void run() {
-					String[] strArr = s.split("\\s+");
-					ArrayList<Tuple<String>> stringCounts = new ArrayList<Tuple<String>>();
-					for (String str : strArr) {
-						boolean found = false;
-						for (Tuple<String> tuple : stringCounts) {
-							if (tuple.getKey().equals(str)) {
-								tuple.incValue();
-								found = true;
-							}
-						}
-						if (!found && notCommonWord(str)) {
-							stringCounts.add(new Tuple<String>(str, 1));
-						}
-					}
-					listOfWordCountsByArticle.add(stringCounts);
+			String[] strArr = s.split("\\s+");
+			final ArrayList<Tuple<String>> stringCounts = new ArrayList<Tuple<String>>();
+			for (final String str : strArr) {
+				Tuple<String> tuple = new Tuple<String>(str, 1);
+				if(notCommonWord(str)){
+					int index = stringCounts.indexOf(tuple);
+				int indexGeneral = listOfWordCountsTotal.indexOf(tuple);
+				if (index >= 0) {
+					stringCounts.get(index).incValue();
+					listOfWordCountsTotal.get(indexGeneral).incValue();
+				} else{
+					stringCounts.add(tuple);
 				}
-			});
-		}
-		es.shutdown();
-		es.awaitTermination(StaticVariables.TIMEOUT, TimeUnit.SECONDS);
-
-		for (final ArrayList<Tuple<String>> wordList : listOfWordCountsByArticle) {
-			for (Tuple<String> word : wordList) {
-				boolean found = false;
-				for (Tuple<String> tuple : listOfWordCountsTotal) {
-					if (tuple.getKey().equals(word.getKey())) {
-						tuple.setValue(word.getValue());
-						;
-						found = true;
-					}
-				}
-				if (!found) {
-					listOfWordCountsTotal.add(new Tuple<String>(word.getKey(), word.getValue()));
+				if (indexGeneral >= 0) {
+					listOfWordCountsTotal.get(indexGeneral).incValue();
+				} else {
+					listOfWordCountsTotal.add(tuple);
 				}
 			}
+			}
+			listOfWordCountsByArticle.add(stringCounts);
 		}
 
 		Collections.sort(listOfWordCountsTotal);
