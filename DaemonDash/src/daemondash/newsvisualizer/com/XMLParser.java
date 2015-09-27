@@ -46,7 +46,7 @@ public class XMLParser {
 
 	public XMLParser(String feed, final String searchTerm) throws InterruptedException {
 		links = new ArrayList<String>();
-		final String term = searchTerm.toUpperCase();
+		final String term = searchTerm.replaceAll("\\p{Punct}", " ").toUpperCase();
 
 		try {
 			Document doc = Jsoup.connect(feed).timeout(StaticVariables.TIMEOUT * 200).get();
@@ -115,7 +115,7 @@ public class XMLParser {
 
 	public XMLParser(List<String> feeds, String searchTerm) throws InterruptedException {
 		links = new ArrayList<String>();
-		final String term = searchTerm.toUpperCase();
+		final String term = searchTerm.replaceAll("\\p{Punct}", " ").toUpperCase();
 		ExecutorService es = Executors
 				.newFixedThreadPool(Math.min(StaticVariables.MAX_THREADS, (feeds.size() + 1) / 2));
 		for (final String feed : feeds) {
