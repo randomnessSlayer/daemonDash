@@ -6,7 +6,7 @@ public class StaticVariables {
 	public static final int NUM_POP_WORDS = 15;
 	public static final int TIMEOUT = 20;
 	public static final String[] commonWords = new String[] { "FOR", "THE", "SAID", "WHILE", "FROM", "AND", "WAS",
-			"WHERE", "WHAT", "WHEN", "WHY", "HOW", "THAT", "THEN", "THERE", "WHO", "ALL", "WERE", "INTO",
+			"WHERE", "WHAT", "WHEN", "WHY", "HOW", "THAT", "THEN", "THERE", "WHO", "ALL", "WERE", "INTO", "TIMELY",
 			"HAD", "WILL", "WITH", "ARE", "BUT", "HIS", "WOULD", "COULD", "WHICH", "THEIR", "WELL", "ABOUT",
 			"JUST", "LIKE", "YOU", "SHE", "HER", "HIM", "SAYS", "THIS", "NOT", "THEY", "HAS", "HAVE", "NEWS", "ITS",
 			"ALSO", "OVER", "MORE", "BEEN", "BEING", "YOUR", "OUT", "AFTER", "CAN", "PEOPLE", "YEAR", "THAN", "SOME",
