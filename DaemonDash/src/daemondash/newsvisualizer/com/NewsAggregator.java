@@ -40,7 +40,7 @@ public class NewsAggregator {
 			"http://hosted2.ap.org/atom/APDEFAULT/aa9398e6757a46fa93ed5dea7bd3729e"
 		};
 	public static final String[] LIST_OF_AJ_SITES = new String[]{
-			"http://hosted2.ap.org/atom/APDEFAULT/aa9398e6757a46fa93ed5dea7bd3729e","http://www.aljazeera.com/xml/rss/all.xml"
+			"http://www.aljazeera.com/xml/rss/all.xml","http://america.aljazeera.com/content/ajam/articles.rss"
 		};
 	public void NewsAggregator(String term){
 		
