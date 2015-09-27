@@ -1,7 +1,6 @@
 package tests.daemondash.newsvisualizer.com;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -14,8 +13,6 @@ import daemondash.newsvisualizer.com.WebReader;
 import daemondash.newsvisualizer.com.XMLParser;
 
 public class ArticleParserTest {
-	private static URL file = ArticleParserTest.class.getResource("/resources/test.xml");
-
 	public static void main(String[] args)
 			throws IOException, ParserConfigurationException, SAXException, InterruptedException {
 		ArrayList<String> articles = new ArrayList<String>();
