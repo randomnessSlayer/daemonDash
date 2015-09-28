@@ -18,7 +18,7 @@ public class StaticVariables {
 			"BBC", "JAVASCRIPT", "SUCH", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY",
 			"JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "NOVEMBER", "DECEMBER",
 			"REALLY", "MONTH", "MONTHS", "DAY", "DAYS", "EMAIL", "ONLY", "COMMENT", "USING", "SOURCES", "EARLIER",
-			"DON'T", "WON'T", "SHOULDN'T", "SHOULD", "SAY", "FELLOW"};
+			"DON'T", "WON'T", "SHOULDN'T", "SHOULD", "SAY", "FELLOW", "MRS", "MR"};
 	
 	public static final ArrayList<String> LIST_OF_COMMON_WORDS = asArray(commonWords);
 	
